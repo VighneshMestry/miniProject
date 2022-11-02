@@ -23,6 +23,7 @@ public class signUp extends javax.swing.JFrame {
      */
     public signUp() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -310,8 +311,9 @@ public class signUp extends javax.swing.JFrame {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-        login l = new login();
+        login_old l = new login_old();
         l.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void tmobnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tmobnoActionPerformed
@@ -328,7 +330,7 @@ public class signUp extends javax.swing.JFrame {
 
     private void loginMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuActionPerformed
         // TODO add your handling code here:
-        login l = new login();
+        login_old l = new login_old();
         l.setVisible(true);
     }//GEN-LAST:event_loginMenuActionPerformed
 
@@ -340,7 +342,7 @@ public class signUp extends javax.swing.JFrame {
 
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
         // TODO add your handling code here:
-        login l = new login();
+        login_old l = new login_old();
         l.setVisible(true);
     }//GEN-LAST:event_loginBtnMouseClicked
 
@@ -387,7 +389,7 @@ public class signUp extends javax.swing.JFrame {
 //            pt.setString(4,tusername.getText());
 //            pt.setString(5,tpassword.getText());
 ////            pt.setString(2, new String(tpassword.getPassword()));
-//
+//s
 //            ResultSet rs = pt.executeQuery();
 //            if(rs.next()){
 //                JOptionPane.showMessageDialog(null, "Welcome " + tname.getText(), "Successful Signup", JOptionPane.PLAIN_MESSAGE);
@@ -461,6 +463,9 @@ public class signUp extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Welcome " + tname.getText(), "Successful Signup", JOptionPane.PLAIN_MESSAGE);
                 startPage s = new startPage();
                 s.setVisible(true);
+                this.setVisible(false);
+                s.userNameDisplay.setText(tusername.getText());
+                this.setVisible(false);
       
                 con.close();
 

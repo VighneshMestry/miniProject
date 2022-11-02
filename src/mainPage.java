@@ -1,4 +1,3 @@
-
 import java.awt.Desktop;
 import java.net.URI;
 import java.net.URL;
@@ -8,21 +7,42 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Vighnesh
- */
+class Node{
+    String clgName;
+    String website;
+    String ratings;
+    String id;
+}
+class NodeComparator implements Comparator<Node> {
+  
+    // override the compare() method
+    public int compare(Node s1, Node s2)
+    {
+        if (Float.parseFloat(s1.ratings) == Float.parseFloat(s2.ratings))
+            return 0;
+        else if (Float.parseFloat(s1.ratings) > Float.parseFloat(s2.ratings))
+            return 1;
+        else
+            return -1;
+    }
+}
+  
+
 public class mainPage extends javax.swing.JFrame{
-    
+    public static ArrayList<Node> list = new ArrayList<>();
+    public static void display(){
+        for(int i = 0; i  <list.size(); i++){
+                System.out.println(list.get(i).clgName + " ");
+                System.out.println(list.get(i).ratings);
+            }
+    }
 
     /**
      * Creates new form mainPage
@@ -30,19 +50,20 @@ public class mainPage extends javax.swing.JFrame{
     public mainPage() {
         
         initComponents();
+        this.setLocationRelativeTo(null);
         Statement st;
-        ResultSet rs;
         
         try{
-            
             Class.forName("com.mysql.jdbc.Driver");
             Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
             st = con.createStatement();
-            rs = st.executeQuery("select * from rating");
-            if(rs.next()){
-                name1.setText(rs.getString(1));
-                name2.setText(rs.getString(1));
-            }
+//            ResultSet rs = st.executeQuery("select * from rating");
+//            String name = rs.getString(1);
+//            if(rs.next()){
+//                name1.setText(rs.getString(1));
+//                name2.setText(rs.getString(1));
+//                
+//            }
         }catch (Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -66,10 +87,10 @@ public class mainPage extends javax.swing.JFrame{
         jLabel25 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        externalLink = new javax.swing.JButton();
+        externalLink2 = new javax.swing.JButton();
         jLabel26 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
+        review2 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         text2 = new javax.swing.JTextField();
         rate2 = new javax.swing.JButton();
@@ -86,7 +107,7 @@ public class mainPage extends javax.swing.JFrame{
         externalLink1 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        review1 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         text1 = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
@@ -96,10 +117,10 @@ public class mainPage extends javax.swing.JFrame{
         jLabel36 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        externalLink2 = new javax.swing.JButton();
+        externalLink3 = new javax.swing.JButton();
         jLabel58 = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
-        jLabel63 = new javax.swing.JLabel();
+        review3 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
         text3 = new javax.swing.JTextField();
         rate3 = new javax.swing.JButton();
@@ -110,10 +131,10 @@ public class mainPage extends javax.swing.JFrame{
         jLabel41 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        externalLink3 = new javax.swing.JButton();
+        externalLink7 = new javax.swing.JButton();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
-        jLabel70 = new javax.swing.JLabel();
+        review7 = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
         text7 = new javax.swing.JTextField();
         rate7 = new javax.swing.JButton();
@@ -124,11 +145,11 @@ public class mainPage extends javax.swing.JFrame{
         jLabel46 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        externalLink4 = new javax.swing.JButton();
+        externalLink5 = new javax.swing.JButton();
         jLabel72 = new javax.swing.JLabel();
         jLabel75 = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
-        jLabel74 = new javax.swing.JLabel();
+        review5 = new javax.swing.JLabel();
         text5 = new javax.swing.JTextField();
         rate5 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
@@ -138,9 +159,9 @@ public class mainPage extends javax.swing.JFrame{
         jLabel51 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        externalLink5 = new javax.swing.JButton();
+        externalLink6 = new javax.swing.JButton();
         jLabel77 = new javax.swing.JLabel();
-        jLabel78 = new javax.swing.JLabel();
+        review6 = new javax.swing.JLabel();
         jLabel76 = new javax.swing.JLabel();
         jLabel79 = new javax.swing.JLabel();
         text6 = new javax.swing.JTextField();
@@ -152,9 +173,9 @@ public class mainPage extends javax.swing.JFrame{
         jLabel61 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        externalLink7 = new javax.swing.JButton();
+        externalLink8 = new javax.swing.JButton();
         jLabel84 = new javax.swing.JLabel();
-        jLabel86 = new javax.swing.JLabel();
+        review8 = new javax.swing.JLabel();
         jLabel85 = new javax.swing.JLabel();
         jLabel87 = new javax.swing.JLabel();
         text8 = new javax.swing.JTextField();
@@ -166,10 +187,10 @@ public class mainPage extends javax.swing.JFrame{
         jLabel66 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        externalLink8 = new javax.swing.JButton();
+        externalLink9 = new javax.swing.JButton();
         jLabel88 = new javax.swing.JLabel();
         jLabel89 = new javax.swing.JLabel();
-        jLabel90 = new javax.swing.JLabel();
+        review9 = new javax.swing.JLabel();
         jLabel91 = new javax.swing.JLabel();
         text9 = new javax.swing.JTextField();
         rate9 = new javax.swing.JButton();
@@ -180,13 +201,16 @@ public class mainPage extends javax.swing.JFrame{
         jLabel47 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        externalLink9 = new javax.swing.JButton();
+        externalLink4 = new javax.swing.JButton();
         jLabel92 = new javax.swing.JLabel();
         jLabel93 = new javax.swing.JLabel();
-        jLabel94 = new javax.swing.JLabel();
+        review4 = new javax.swing.JLabel();
         jLabel95 = new javax.swing.JLabel();
         text4 = new javax.swing.JTextField();
         rate4 = new javax.swing.JButton();
+        refresh = new javax.swing.JButton();
+        impDoneBtn = new javax.swing.JButton();
+        loadBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         homeMenu = new javax.swing.JMenu();
@@ -220,11 +244,11 @@ public class mainPage extends javax.swing.JFrame{
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel2.setText("For More Information click here ->");
 
-        externalLink.setBackground(new java.awt.Color(204, 255, 204));
-        externalLink.setText("Click");
-        externalLink.addActionListener(new java.awt.event.ActionListener() {
+        externalLink2.setBackground(new java.awt.Color(204, 255, 204));
+        externalLink2.setText("Click");
+        externalLink2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                externalLinkActionPerformed(evt);
+                externalLink2ActionPerformed(evt);
             }
         });
 
@@ -233,8 +257,8 @@ public class mainPage extends javax.swing.JFrame{
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel28.setText("Reviews- ");
 
-        jLabel53.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel53.setText("0");
+        review2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        review2.setText("0");
 
         jLabel57.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel57.setText("/10");
@@ -290,14 +314,14 @@ public class mainPage extends javax.swing.JFrame{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel53)
+                                .addComponent(review2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel57)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(externalLink, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))))
+                                .addComponent(externalLink2, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(name2)))
@@ -319,7 +343,7 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel28)
-                                .addComponent(jLabel53)
+                                .addComponent(review2)
                                 .addComponent(jLabel57))
                             .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)))
@@ -333,7 +357,7 @@ public class mainPage extends javax.swing.JFrame{
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(externalLink))
+                    .addComponent(externalLink2))
                 .addContainerGap())
         );
 
@@ -388,8 +412,8 @@ public class mainPage extends javax.swing.JFrame{
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel20.setText("Reviews- ");
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel21.setText("0");
+        review1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        review1.setText("0");
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel22.setText("/10");
@@ -428,7 +452,7 @@ public class mainPage extends javax.swing.JFrame{
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel21)
+                                .addComponent(review1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel22)
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -455,7 +479,7 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel20)
-                                .addComponent(jLabel21)
+                                .addComponent(review1)
                                 .addComponent(jLabel22))
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
@@ -498,11 +522,11 @@ public class mainPage extends javax.swing.JFrame{
         jLabel6.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel6.setText("For More Information click here ->");
 
-        externalLink2.setBackground(new java.awt.Color(204, 255, 204));
-        externalLink2.setText("Click");
-        externalLink2.addActionListener(new java.awt.event.ActionListener() {
+        externalLink3.setBackground(new java.awt.Color(204, 255, 204));
+        externalLink3.setText("Click");
+        externalLink3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                externalLink2ActionPerformed(evt);
+                externalLink3ActionPerformed(evt);
             }
         });
 
@@ -511,8 +535,8 @@ public class mainPage extends javax.swing.JFrame{
         jLabel62.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel62.setText("Reviews- ");
 
-        jLabel63.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel63.setText("0");
+        review3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        review3.setText("0");
 
         jLabel67.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel67.setText("/10");
@@ -539,30 +563,27 @@ public class mainPage extends javax.swing.JFrame{
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(name3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel36, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
-                                .addComponent(jLabel35)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel58)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel63)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel67)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(name3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel35)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel58)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(review3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel67)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(externalLink2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)))
+                        .addComponent(externalLink3, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -587,7 +608,7 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel62)
-                                .addComponent(jLabel63)
+                                .addComponent(review3)
                                 .addComponent(jLabel67))
                             .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)))
@@ -601,7 +622,7 @@ public class mainPage extends javax.swing.JFrame{
                 .addGap(13, 13, 13)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(externalLink2))
+                    .addComponent(externalLink3))
                 .addContainerGap())
         );
 
@@ -630,11 +651,11 @@ public class mainPage extends javax.swing.JFrame{
         jLabel8.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel8.setText("For More Information click here ->");
 
-        externalLink3.setBackground(new java.awt.Color(204, 255, 204));
-        externalLink3.setText("Click");
-        externalLink3.addActionListener(new java.awt.event.ActionListener() {
+        externalLink7.setBackground(new java.awt.Color(204, 255, 204));
+        externalLink7.setText("Click");
+        externalLink7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                externalLink3ActionPerformed(evt);
+                externalLink7ActionPerformed(evt);
             }
         });
 
@@ -643,8 +664,8 @@ public class mainPage extends javax.swing.JFrame{
         jLabel69.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel69.setText("Reviews- ");
 
-        jLabel70.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel70.setText("0");
+        review7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        review7.setText("0");
 
         jLabel71.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel71.setText("/10");
@@ -671,30 +692,27 @@ public class mainPage extends javax.swing.JFrame{
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(name7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
-                                .addComponent(jLabel40)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel68)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel70)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel71)
-                                .addGap(0, 29, Short.MAX_VALUE))))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(name7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel40)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel68)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel69, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(review7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel71)
+                        .addGap(0, 29, Short.MAX_VALUE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(externalLink3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(externalLink7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(89, 89, 89)
@@ -719,7 +737,7 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel69)
-                                .addComponent(jLabel70)
+                                .addComponent(review7)
                                 .addComponent(jLabel71))
                             .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)))
@@ -733,7 +751,7 @@ public class mainPage extends javax.swing.JFrame{
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(externalLink3))
+                    .addComponent(externalLink7))
                 .addGap(46, 46, 46))
         );
 
@@ -762,11 +780,11 @@ public class mainPage extends javax.swing.JFrame{
         jLabel10.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel10.setText("For More Information click here ->");
 
-        externalLink4.setBackground(new java.awt.Color(204, 255, 204));
-        externalLink4.setText("Click");
-        externalLink4.addActionListener(new java.awt.event.ActionListener() {
+        externalLink5.setBackground(new java.awt.Color(204, 255, 204));
+        externalLink5.setText("Click");
+        externalLink5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                externalLink4ActionPerformed(evt);
+                externalLink5ActionPerformed(evt);
             }
         });
 
@@ -778,8 +796,8 @@ public class mainPage extends javax.swing.JFrame{
         jLabel73.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel73.setText("Reviews- ");
 
-        jLabel74.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel74.setText("0");
+        review5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        review5.setText("0");
 
         text5.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         text5.setText("      Rate us!");
@@ -803,30 +821,26 @@ public class mainPage extends javax.swing.JFrame{
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(name5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel46, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
-                                .addComponent(jLabel45)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel72)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel74)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel75)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(name5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel45)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel72)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel73, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(review5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel75))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(externalLink4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(externalLink5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
@@ -851,7 +865,7 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel73)
-                                .addComponent(jLabel74)
+                                .addComponent(review5)
                                 .addComponent(jLabel75))
                             .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)))
@@ -865,7 +879,7 @@ public class mainPage extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(externalLink4))
+                    .addComponent(externalLink5))
                 .addContainerGap())
         );
 
@@ -894,19 +908,19 @@ public class mainPage extends javax.swing.JFrame{
         jLabel12.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel12.setText("For More Information click here ->");
 
-        externalLink5.setBackground(new java.awt.Color(204, 255, 204));
-        externalLink5.setText("Click");
-        externalLink5.addActionListener(new java.awt.event.ActionListener() {
+        externalLink6.setBackground(new java.awt.Color(204, 255, 204));
+        externalLink6.setText("Click");
+        externalLink6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                externalLink5ActionPerformed(evt);
+                externalLink6ActionPerformed(evt);
             }
         });
 
         jLabel77.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel77.setText("Reviews- ");
 
-        jLabel78.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel78.setText("0");
+        review6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        review6.setText("0");
 
         jLabel76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star.png"))); // NOI18N
 
@@ -935,30 +949,26 @@ public class mainPage extends javax.swing.JFrame{
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(name6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel51, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
-                                .addComponent(jLabel50)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel76)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel78)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel79)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(name6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel49, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel50)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel76)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel77, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(review6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel79))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(externalLink5, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                        .addComponent(externalLink6, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -983,7 +993,7 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel77)
-                                .addComponent(jLabel78)
+                                .addComponent(review6)
                                 .addComponent(jLabel79))
                             .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)))
@@ -997,7 +1007,7 @@ public class mainPage extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(externalLink5))
+                    .addComponent(externalLink6))
                 .addContainerGap())
         );
 
@@ -1026,18 +1036,18 @@ public class mainPage extends javax.swing.JFrame{
         jLabel16.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel16.setText("For More Information click here ->");
 
-        externalLink7.setBackground(new java.awt.Color(204, 255, 204));
-        externalLink7.setText("Click");
-        externalLink7.addActionListener(new java.awt.event.ActionListener() {
+        externalLink8.setBackground(new java.awt.Color(204, 255, 204));
+        externalLink8.setText("Click");
+        externalLink8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                externalLink7ActionPerformed(evt);
+                externalLink8ActionPerformed(evt);
             }
         });
 
         jLabel84.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/star.png"))); // NOI18N
 
-        jLabel86.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel86.setText("0");
+        review8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        review8.setText("0");
 
         jLabel85.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel85.setText("Reviews- ");
@@ -1067,30 +1077,27 @@ public class mainPage extends javax.swing.JFrame{
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(name8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel61, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
-                                .addComponent(jLabel60)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel84)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel86)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel87)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(name8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel59, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel60)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel84)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel85, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(review8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel87)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addGap(18, 18, 18)
-                        .addComponent(externalLink7, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)))
+                        .addComponent(externalLink8, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(89, 89, 89)
@@ -1115,7 +1122,7 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel85)
-                                .addComponent(jLabel86)
+                                .addComponent(review8)
                                 .addComponent(jLabel87))
                             .addComponent(jLabel84, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)))
@@ -1129,7 +1136,7 @@ public class mainPage extends javax.swing.JFrame{
                 .addGap(13, 13, 13)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(externalLink7))
+                    .addComponent(externalLink8))
                 .addContainerGap())
         );
 
@@ -1147,7 +1154,7 @@ public class mainPage extends javax.swing.JFrame{
 
         jLabel65.setBackground(new java.awt.Color(255, 51, 0));
         jLabel65.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel65.setText("->  Ranked 1 out of 10");
+        jLabel65.setText("->  Ranked 9 out of 10");
 
         jLabel66.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel66.setText("-> Courses offered - B.E/B.Tech");
@@ -1158,11 +1165,11 @@ public class mainPage extends javax.swing.JFrame{
         jLabel18.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel18.setText("For More Information click here ->");
 
-        externalLink8.setBackground(new java.awt.Color(204, 255, 204));
-        externalLink8.setText("Click");
-        externalLink8.addActionListener(new java.awt.event.ActionListener() {
+        externalLink9.setBackground(new java.awt.Color(204, 255, 204));
+        externalLink9.setText("Click");
+        externalLink9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                externalLink8ActionPerformed(evt);
+                externalLink9ActionPerformed(evt);
             }
         });
 
@@ -1171,8 +1178,8 @@ public class mainPage extends javax.swing.JFrame{
         jLabel89.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel89.setText("Reviews- ");
 
-        jLabel90.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel90.setText("0");
+        review9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        review9.setText("0");
 
         jLabel91.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel91.setText("/10");
@@ -1199,30 +1206,27 @@ public class mainPage extends javax.swing.JFrame{
         jPanel14Layout.setHorizontalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(name9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
-                            .addComponent(jLabel64, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel66, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
-                                .addComponent(jLabel65)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel88)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel90)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel91)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(name9, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                    .addComponent(jLabel64, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel65)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel88)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(review9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel91)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
-                        .addComponent(externalLink8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(externalLink9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
@@ -1247,7 +1251,7 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel89)
-                                .addComponent(jLabel90)
+                                .addComponent(review9)
                                 .addComponent(jLabel91))
                             .addComponent(jLabel88, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24)))
@@ -1261,7 +1265,7 @@ public class mainPage extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(externalLink8))
+                    .addComponent(externalLink9))
                 .addContainerGap())
         );
 
@@ -1290,11 +1294,11 @@ public class mainPage extends javax.swing.JFrame{
         jLabel33.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel33.setText("For More Information click here ->");
 
-        externalLink9.setBackground(new java.awt.Color(204, 255, 204));
-        externalLink9.setText("Click");
-        externalLink9.addActionListener(new java.awt.event.ActionListener() {
+        externalLink4.setBackground(new java.awt.Color(204, 255, 204));
+        externalLink4.setText("Click");
+        externalLink4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                externalLink9ActionPerformed(evt);
+                externalLink4ActionPerformed(evt);
             }
         });
 
@@ -1303,8 +1307,8 @@ public class mainPage extends javax.swing.JFrame{
         jLabel93.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel93.setText("Reviews- ");
 
-        jLabel94.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel94.setText("0");
+        review4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        review4.setText("0");
 
         jLabel95.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel95.setText("/10");
@@ -1331,30 +1335,27 @@ public class mainPage extends javax.swing.JFrame{
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(name4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel47, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
-                                .addComponent(jLabel43)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel92)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel94)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel95)
-                                .addGap(0, 38, Short.MAX_VALUE))))
+                    .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(name4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel42, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel47, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel43)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel92)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel93, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(review4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel95)
+                        .addGap(0, 38, Short.MAX_VALUE))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
                         .addComponent(jLabel33)
                         .addGap(18, 18, 18)
-                        .addComponent(externalLink9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(externalLink4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGap(91, 91, 91)
@@ -1379,7 +1380,7 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel93)
-                                .addComponent(jLabel94)
+                                .addComponent(review4)
                                 .addComponent(jLabel95))
                             .addComponent(jLabel92, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)))
@@ -1393,9 +1394,36 @@ public class mainPage extends javax.swing.JFrame{
                 .addGap(18, 18, 18)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(externalLink9))
+                    .addComponent(externalLink4))
                 .addGap(21, 21, 21))
         );
+
+        refresh.setBackground(new java.awt.Color(204, 204, 255));
+        refresh.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        refresh.setText("Refresh");
+        refresh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
+
+        impDoneBtn.setBackground(new java.awt.Color(0, 204, 0));
+        impDoneBtn.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        impDoneBtn.setText("Done");
+        impDoneBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                impDoneBtnActionPerformed(evt);
+            }
+        });
+
+        loadBtn.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        loadBtn.setText("Load");
+        loadBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1404,7 +1432,6 @@ public class mainPage extends javax.swing.JFrame{
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1416,19 +1443,33 @@ public class mainPage extends javax.swing.JFrame{
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(loadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(impDoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(901, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(impDoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1516,9 +1557,7 @@ public class mainPage extends javax.swing.JFrame{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1466, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1478, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1530,322 +1569,702 @@ public class mainPage extends javax.swing.JFrame{
 
     private void signupMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupMenuActionPerformed
         // TODO add your handling code here:
-        signUp s = new signUp();
+        signup_1 s = new signup_1();
         s.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_signupMenuActionPerformed
 
     private void signupMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signupMenuMouseClicked
         // TODO add your handling code here:
-        signUp s = new signUp();
+        signup_1 s = new signup_1();
         s.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_signupMenuMouseClicked
 
     private void loginMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginMenuActionPerformed
         // TODO add your handling code here:
         login l = new login();
         l.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_loginMenuActionPerformed
 
     private void loginMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMenuMouseClicked
         // TODO add your handling code here:
         login l = new login();
         l.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_loginMenuMouseClicked
 
     private void homeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeMenuActionPerformed
         // TODO add your handling code here:
         startPage m = new startPage();
         m.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_homeMenuActionPerformed
 
     private void homeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMenuMouseClicked
         // TODO add your handling code here:
         startPage m = new startPage();
         m.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_homeMenuMouseClicked
 
-    private void externalLink8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_externalLink8ActionPerformed
+    private void impDoneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_impDoneBtnActionPerformed
+        list.clear();
+        Node node1 = new Node();
+        node1.clgName = name1.getText();
+        node1.ratings = review1.getText();
+        node1.website = externalLink1.getActionCommand();
+        list.add(node1);
 
-    private void externalLink7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_externalLink7ActionPerformed
+        Node node2 = new Node();
+        node2.clgName = name2.getText();
+        node2.ratings = review2.getText();
+        node2.website = externalLink2.getActionCommand();
+        list.add(node2);
 
-    private void externalLink5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_externalLink5ActionPerformed
+        Node node3 = new Node();
+        node3.clgName = name3.getText();
+        node3.ratings = review3.getText();
+        node3.website = externalLink3.getActionCommand();
+        list.add(node3);
 
-    private void externalLink4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_externalLink4ActionPerformed
+        Node node4 = new Node();
+        node4.clgName = name4.getText();
+        node4.ratings = review4.getText();
+        node4.website = externalLink4.getActionCommand();
+        list.add(node4);
 
-    private void externalLink3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_externalLink3ActionPerformed
+        Node node5 = new Node();
+        node5.clgName = name5.getText();
+        node5.ratings = review5.getText();
+        node5.website = externalLink5.getActionCommand();
+        list.add(node5);
 
-    private void externalLink2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_externalLink2ActionPerformed
+        Node node6 = new Node();
+        node6.clgName = name6.getText();
+        node6.ratings = review6.getText();
+        node6.website = externalLink6.getActionCommand();
+        list.add(node6);
 
-    private void externalLink1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink1ActionPerformed
-        // TODO add your handling code here:
-        try{
-        Desktop.getDesktop().browse(new URI("https://www.youtube.com/watch?v=C_Y6yrkj9Sg"));
-        }catch (Exception e) {
+        Node node7 = new Node();
+        node7.clgName = name7.getText();
+        node7.ratings = review7.getText();
+        node7.website = externalLink7.getActionCommand();
+        list.add(node7);
+
+        Node node8 = new Node();
+        node8.clgName = name8.getText();
+        node8.ratings = review8.getText();
+        node8.website = externalLink8.getActionCommand();
+        list.add(node8);
+
+        Node node9 = new Node();
+        node9.clgName = name9.getText();
+        node9.ratings = review9.getText();
+        node9.website = externalLink9.getActionCommand();
+        list.add(node9);
+
+        Collections.sort(list, new NodeComparator());
+
+    }//GEN-LAST:event_impDoneBtnActionPerformed
+
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+        try {
+            name1.setText(list.get(8).clgName);
+            review1.setText(list.get(8).ratings);
+
+            name2.setText(list.get(7).clgName);
+            review2.setText(list.get(7).ratings);
+            
+            name3.setText(list.get(6).clgName);
+            review3.setText(list.get(6).ratings);
+            
+            name4.setText(list.get(5).clgName);
+            review4.setText(list.get(5).ratings);
+            
+            name5.setText(list.get(4).clgName);
+            review5.setText(list.get(4).ratings);
+            
+            name6.setText(list.get(3).clgName);
+            review6.setText(list.get(3).ratings);
+            
+            name7.setText(list.get(2).clgName);
+            review7.setText(list.get(2).ratings);
+            
+            name8.setText(list.get(1).clgName);
+            review8.setText(list.get(1).ratings);
+         
+            name9.setText(list.get(0).clgName);
+            review9.setText(list.get(0).ratings);
+            
+            list.clear();
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-    }//GEN-LAST:event_externalLink1ActionPerformed
 
-    private void rate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate1ActionPerformed
-        // TODO add your handling code here:
-        String rating = text1.getText();
-        String clgName = name1.getText();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
-                Statement stm = con.createStatement();
-                
-                String sql = "";
-                String q = "UPDATE rating SET ratings = ? WHERE name = ?";
-                
-                PreparedStatement preparedStmt = con.prepareStatement(q);
-                preparedStmt.setString (1, rating);
-                preparedStmt.setString (2, clgName);
-                preparedStmt.execute();
-                con.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }  
-    }//GEN-LAST:event_rate1ActionPerformed
-
-    private void externalLinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLinkActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_externalLinkActionPerformed
-
-    private void externalLink9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_externalLink9ActionPerformed
-
-    private void text1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text1ActionPerformed
-
-    private void text2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text2ActionPerformed
-
-    private void rate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate2ActionPerformed
-        // TODO add your handling code here:
-        String rating = text2.getText();
-        String clgName = name2.getText();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
-                Statement stm = con.createStatement();
-                
-                String sql = "";
-                String q = "UPDATE rating SET ratings = ? WHERE name = ?";
-                
-                PreparedStatement preparedStmt = con.prepareStatement(q);
-                preparedStmt.setString (1, rating);
-                preparedStmt.setString (2, clgName);
-                preparedStmt.execute();
-                con.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }//GEN-LAST:event_rate2ActionPerformed
-
-    private void text3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text3ActionPerformed
-
-    private void rate3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate3ActionPerformed
-        // TODO add your handling code here:
-        String rating = text3.getText();
-        String clgName = name3.getText();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
-                Statement stm = con.createStatement();
-                
-                String q = "UPDATE rating SET ratings = ? WHERE name = ?";
-                
-                PreparedStatement preparedStmt = con.prepareStatement(q);
-                preparedStmt.setString (1, rating);
-                preparedStmt.setString (2, clgName);
-                preparedStmt.execute();
-                con.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }  
-    }//GEN-LAST:event_rate3ActionPerformed
-
-    private void text4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text4ActionPerformed
+    }//GEN-LAST:event_refreshActionPerformed
 
     private void rate4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate4ActionPerformed
         // TODO add your handling code here:
         String rating = text4.getText();
         String clgName = name4.getText();
+//        review4.setText(rating);
+        review4.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
-                Statement stm = con.createStatement();
-                
-                String sql = "";
-                String q = "UPDATE rating SET ratings = ? WHERE name = ?";
-                
-                PreparedStatement preparedStmt = con.prepareStatement(q);
-                preparedStmt.setString (1, rating);
-                preparedStmt.setString (2, clgName);
-                preparedStmt.execute();
-                con.close();
+            Statement stm = con.createStatement();
+
+            String sql = "";
+            String q = "UPDATE rating SET ratings = ? WHERE name = ?";
+
+            PreparedStatement preparedStmt = con.prepareStatement(q);
+            preparedStmt.setString (1, rating);
+            preparedStmt.setString (2, clgName);
+            preparedStmt.execute();
+            con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_rate4ActionPerformed
 
-    private void text5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text5ActionPerformed
+    private void text4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_text5ActionPerformed
+    }//GEN-LAST:event_text4ActionPerformed
 
-    private void rate5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate5ActionPerformed
+    private void externalLink4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink4ActionPerformed
         // TODO add your handling code here:
-        String rating = text5.getText();
-        String clgName = name5.getText();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
-                Statement stm = con.createStatement();
-                
-                String sql = "";
-                String q = "UPDATE rating SET ratings = ? WHERE name = ?";
-                
-                PreparedStatement preparedStmt = con.prepareStatement(q);
-                preparedStmt.setString (1, rating);
-                preparedStmt.setString (2, clgName);
-                preparedStmt.execute();
-                con.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }//GEN-LAST:event_rate5ActionPerformed
+        String q1 = "select website from rating where ratings = ?";
+        
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+//                    String q1 = "SELECT website FROM rating WHERE name = ?";
+                    
+                    
+                    PreparedStatement ps1 = con.prepareStatement(q1);
+                    ps1.setString(1, review4.getText());
+                    
+                    ResultSet rs1 = ps1.executeQuery();
+//                       ps1.execute();
+                        if(rs1.next()){
+                            String web = rs1.getString("website");
 
-    private void text6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text6ActionPerformed
-
-    private void rate6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate6ActionPerformed
-        // TODO add your handling code here:
-        String rating = text6.getText();
-        String clgName = name6.getText();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
-                Statement stm = con.createStatement();
-                
-                String sql = "";
-                String q = "UPDATE rating SET ratings = ? WHERE name = ?";
-                
-                PreparedStatement preparedStmt = con.prepareStatement(q);
-                preparedStmt.setString (1, rating);
-                preparedStmt.setString (2, clgName);
-                preparedStmt.execute();
-                con.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }//GEN-LAST:event_rate6ActionPerformed
-
-    private void text7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text7ActionPerformed
-
-    private void rate7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate7ActionPerformed
-        // TODO add your handling code here:
-        String rating = text7.getText();
-        String clgName = name7.getText();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
-                Statement stm = con.createStatement();
-                
-                String sql = "";
-                String q = "UPDATE rating SET ratings = ? WHERE name = ?";
-                
-                PreparedStatement preparedStmt = con.prepareStatement(q);
-                preparedStmt.setString (1, rating);
-                preparedStmt.setString (2, clgName);
-                preparedStmt.execute();
-                con.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }//GEN-LAST:event_rate7ActionPerformed
-
-    private void text8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text8ActionPerformed
-
-    private void rate8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate8ActionPerformed
-        // TODO add your handling code here:
-        String rating = text8.getText();
-        String clgName = name8.getText();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
-                Statement stm = con.createStatement();
-                
-                String sql = "";
-                String q = "UPDATE rating SET ratings = ? WHERE name = ?";
-                
-                PreparedStatement preparedStmt = con.prepareStatement(q);
-                preparedStmt.setString (1, rating);
-                preparedStmt.setString (2, clgName);
-                preparedStmt.execute();
-                con.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }//GEN-LAST:event_rate8ActionPerformed
-
-    private void text9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text9ActionPerformed
+                            System.out.println("web is " + web + " hello");
+                            Desktop.getDesktop().browse(new URI(web));
+                        }                    
+                    }catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+    }//GEN-LAST:event_externalLink4ActionPerformed
 
     private void rate9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate9ActionPerformed
         // TODO add your handling code here:
         String rating = text9.getText();
         String clgName = name9.getText();
+        review9.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
-                Statement stm = con.createStatement();
-                
-                String sql = "";
-                String q = "UPDATE rating SET ratings = ? WHERE name = ?";
-                
-                PreparedStatement preparedStmt = con.prepareStatement(q);
-                preparedStmt.setString (1, rating);
-                preparedStmt.setString (2, clgName);
-                preparedStmt.execute();
-                con.close();
+            Statement stm = con.createStatement();
+
+            String sql = "";
+            String q = "UPDATE rating SET ratings = ? WHERE name = ?";
+
+            PreparedStatement preparedStmt = con.prepareStatement(q);
+            preparedStmt.setString (1, rating);
+            preparedStmt.setString (2, clgName);
+            preparedStmt.execute();
+            con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_rate9ActionPerformed
 
+    private void text9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text9ActionPerformed
+
+    private void externalLink9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink9ActionPerformed
+        // TODO add your handling code here:
+        String q1 = "select website from rating where ratings = ?";
+        
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+//                    String q1 = "SELECT website FROM rating WHERE name = ?";
+                    
+                    
+                    PreparedStatement ps1 = con.prepareStatement(q1);
+                    ps1.setString(1, review9.getText());
+                    
+                    ResultSet rs1 = ps1.executeQuery();
+//                       ps1.execute();
+                        if(rs1.next()){
+                            String web = rs1.getString("website");
+
+                            System.out.println("web is " + web + " hello");
+                            Desktop.getDesktop().browse(new URI(web));
+                        }                    
+                    }catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+    }//GEN-LAST:event_externalLink9ActionPerformed
+
+    private void rate8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate8ActionPerformed
+        // TODO add your handling code here:
+        String rating = text8.getText();
+        String clgName = name8.getText();
+        review8.setText(rating);
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+            Statement stm = con.createStatement();
+
+            String sql = "";
+            String q = "UPDATE rating SET ratings = ? WHERE name = ?";
+
+            PreparedStatement preparedStmt = con.prepareStatement(q);
+            preparedStmt.setString (1, rating);
+            preparedStmt.setString (2, clgName);
+            preparedStmt.execute();
+            con.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_rate8ActionPerformed
+
+    private void text8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text8ActionPerformed
+
+    private void externalLink8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink8ActionPerformed
+        // TODO add your handling code here:
+        String q1 = "select website from rating where ratings = ?";
+        
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+//                    String q1 = "SELECT website FROM rating WHERE name = ?";
+                    
+                    
+                    PreparedStatement ps1 = con.prepareStatement(q1);
+                    ps1.setString(1, review8.getText());
+                    
+                    ResultSet rs1 = ps1.executeQuery();
+//                       ps1.execute();
+                        if(rs1.next()){
+                            String web = rs1.getString("website");
+
+                            System.out.println("web is " + web + " hello");
+                            Desktop.getDesktop().browse(new URI(web));
+                        }                    
+                    }catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+    }//GEN-LAST:event_externalLink8ActionPerformed
+
+    private void rate6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate6ActionPerformed
+        // TODO add your handling code here:
+        String rating = text6.getText();
+        String clgName = name6.getText();
+        review6.setText(rating);
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+            Statement stm = con.createStatement();
+
+            String sql = "";
+            String q = "UPDATE rating SET ratings = ? WHERE name = ?";
+
+            PreparedStatement preparedStmt = con.prepareStatement(q);
+            preparedStmt.setString (1, rating);
+            preparedStmt.setString (2, clgName);
+            preparedStmt.execute();
+            con.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_rate6ActionPerformed
+
+    private void text6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text6ActionPerformed
+
+    private void externalLink6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink6ActionPerformed
+        // TODO add your handling code here:
+        String q1 = "select website from rating where ratings = ?";
+        
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+//                    String q1 = "SELECT website FROM rating WHERE name = ?";
+                    
+                    
+                    PreparedStatement ps1 = con.prepareStatement(q1);
+                    ps1.setString(1, review6.getText());
+                    
+                    ResultSet rs1 = ps1.executeQuery();
+//                       ps1.execute();
+                        if(rs1.next()){
+                            String web = rs1.getString("website");
+
+                            System.out.println("web is " + web + " hello");
+                            Desktop.getDesktop().browse(new URI(web));
+                        }                    
+                    }catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+    }//GEN-LAST:event_externalLink6ActionPerformed
+
+    private void rate5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate5ActionPerformed
+        // TODO add your handling code here:
+        String rating = text5.getText();
+        String clgName = name5.getText();
+        review5.setText(rating);
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+            Statement stm = con.createStatement();
+
+            String sql = "";
+            String q = "UPDATE rating SET ratings = ? WHERE name = ?";
+
+            PreparedStatement preparedStmt = con.prepareStatement(q);
+            preparedStmt.setString (1, rating);
+            preparedStmt.setString (2, clgName);
+            preparedStmt.execute();
+            con.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_rate5ActionPerformed
+
+    private void text5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text5ActionPerformed
+
+    private void externalLink5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink5ActionPerformed
+        // TODO add your handling code here:
+        String q1 = "select website from rating where ratings = ?";
+        
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+//                    String q1 = "SELECT website FROM rating WHERE name = ?";
+                    
+                    
+                    PreparedStatement ps1 = con.prepareStatement(q1);
+                    ps1.setString(1, review5.getText());
+                    
+                    ResultSet rs1 = ps1.executeQuery();
+//                       ps1.execute();
+                        if(rs1.next()){
+                            String web = rs1.getString("website");
+
+                            System.out.println("web is " + web + " hello");
+                            Desktop.getDesktop().browse(new URI(web));
+                        }                    
+                    }catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+    }//GEN-LAST:event_externalLink5ActionPerformed
+
+    private void rate7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate7ActionPerformed
+        // TODO add your handling code here:
+        String rating = text7.getText();
+        String clgName = name7.getText();
+        review7.setText(rating);
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+            Statement stm = con.createStatement();
+
+            String sql = "";
+            String q = "UPDATE rating SET ratings = ? WHERE name = ?";
+
+            PreparedStatement preparedStmt = con.prepareStatement(q);
+            preparedStmt.setString (1, rating);
+            preparedStmt.setString (2, clgName);
+            preparedStmt.execute();
+            con.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_rate7ActionPerformed
+
+    private void text7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text7ActionPerformed
+
+    private void externalLink7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink7ActionPerformed
+        // TODO add your handling code here:
+        String q1 = "select website from rating where ratings = ?";
+        
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+//                    String q1 = "SELECT website FROM rating WHERE name = ?";
+                    
+                    
+                    PreparedStatement ps1 = con.prepareStatement(q1);
+                    ps1.setString(1, review7.getText());
+                    
+                    ResultSet rs1 = ps1.executeQuery();
+//                       ps1.execute();
+                        if(rs1.next()){
+                            String web = rs1.getString("website");
+
+                            System.out.println("web is " + web + " hello");
+                            Desktop.getDesktop().browse(new URI(web));
+                        }                    
+                    }catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+    }//GEN-LAST:event_externalLink7ActionPerformed
+
+    private void rate3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate3ActionPerformed
+        // TODO add your handling code here:
+        String rating = text3.getText();
+        String clgName = name3.getText();
+        review3.setText(rating);
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+            Statement stm = con.createStatement();
+
+            String q = "UPDATE rating SET ratings = ? WHERE name = ?";
+
+            PreparedStatement preparedStmt = con.prepareStatement(q);
+            preparedStmt.setString (1, rating);
+            preparedStmt.setString (2, clgName);
+            preparedStmt.execute();
+            con.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_rate3ActionPerformed
+
+    private void text3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text3ActionPerformed
+
+    private void externalLink3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink3ActionPerformed
+        // TODO add your handling code here:
+        String q1 = "select website from rating where ratings = ?";
+        
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+//                    String q1 = "SELECT website FROM rating WHERE name = ?";
+                    
+                    
+                    PreparedStatement ps1 = con.prepareStatement(q1);
+                    ps1.setString(1, review3.getText());
+                    
+                    ResultSet rs1 = ps1.executeQuery();
+//                       ps1.execute();
+                        if(rs1.next()){
+                            String web = rs1.getString("website");
+
+                            System.out.println("web is " + web + " hello");
+                            Desktop.getDesktop().browse(new URI(web));
+                        }                    
+                    }catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+    }//GEN-LAST:event_externalLink3ActionPerformed
+
+    private void text1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text1ActionPerformed
+
+    private void externalLink1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink1ActionPerformed
+        String q1 = "select website from rating where ratings = ?";
+        
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+//                    String q1 = "SELECT website FROM rating WHERE name = ?";
+                    
+                    
+                    PreparedStatement ps1 = con.prepareStatement(q1);
+                    ps1.setString(1, review1.getText());
+                    
+                    ResultSet rs1 = ps1.executeQuery();
+//                       ps1.execute();
+                        if(rs1.next()){
+                            String web = rs1.getString("website");
+
+                            System.out.println("web is " + web + " hello");
+                            Desktop.getDesktop().browse(new URI(web));
+                        }                    
+                    }catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+    }//GEN-LAST:event_externalLink1ActionPerformed
+
+    private void rate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate1ActionPerformed
+        String rating = text1.getText();
+        String clgName = name1.getText();
+        review1.setText(rating);
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+
+            String q = "UPDATE rating SET ratings = ? WHERE name = ?";
+            PreparedStatement preparedStmt = con.prepareStatement(q);
+            preparedStmt.setString (1, rating);
+            preparedStmt.setString (2, clgName);
+            preparedStmt.execute();
+            con.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_rate1ActionPerformed
+
     private void name2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_name2ActionPerformed
 
+    private void rate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate2ActionPerformed
+        String rating = text2.getText();
+        String clgName = name2.getText();
+        review2.setText(rating);
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+            Statement stm = con.createStatement();
+
+            String sql = "";
+            String q = "UPDATE rating SET ratings = ? WHERE name = ?";
+
+            PreparedStatement preparedStmt = con.prepareStatement(q);
+            preparedStmt.setString (1, rating);
+            preparedStmt.setString (2, clgName);
+            preparedStmt.execute();
+            con.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_rate2ActionPerformed
+
+    private void text2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text2ActionPerformed
+
+    private void externalLink2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_externalLink2ActionPerformed
+        // TODO add your handling code here:
+        String q1 = "select website from rating where ratings = ?";
+        
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+//                    String q1 = "SELECT website FROM rating WHERE name = ?";
+                    
+                    
+                    PreparedStatement ps1 = con.prepareStatement(q1);
+                    ps1.setString(1, review2.getText());
+                    
+                    ResultSet rs1 = ps1.executeQuery();
+//                       ps1.execute();
+                        if(rs1.next()){
+                            String web = rs1.getString("website");
+
+                            System.out.println("web is " + web + " hello");
+                            Desktop.getDesktop().browse(new URI(web));
+                        }                    
+                    }catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
+        
+    }//GEN-LAST:event_externalLink2ActionPerformed
+
+    private void loadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBtnActionPerformed
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
+            String q = "SELECT ratings FROM rating WHERE name = ?";
+            
+            
+            PreparedStatement ps1 = con.prepareStatement(q);
+            ps1.setString(1, name1.getText());
+            ResultSet rs1 = ps1.executeQuery();
+            if(rs1.next()){
+                review1.setText(rs1.getString("ratings"));
+            }
+
+            
+            PreparedStatement ps2 = con.prepareStatement(q);
+            ps2.setString(1, name2.getText());
+            ResultSet rs2 = ps2.executeQuery();
+            if(rs2.next()){
+                review2.setText(rs2.getString("ratings"));
+            }
+            
+            PreparedStatement ps3 = con.prepareStatement(q);
+            ps3.setString(1, name3.getText());
+            ResultSet rs3 = ps3.executeQuery();
+            if(rs3.next()){
+                review3.setText(rs3.getString("ratings"));
+            }
+            
+            PreparedStatement ps4 = con.prepareStatement(q);
+            ps4.setString(1, name4.getText());
+            ResultSet rs4 = ps4.executeQuery();
+            if(rs4.next()){
+                review4.setText(rs4.getString("ratings"));
+            }
+            
+            PreparedStatement ps5 = con.prepareStatement(q);
+            ps5.setString(1, name5.getText());
+            ResultSet rs5 = ps5.executeQuery();
+            if(rs5.next()){
+                review5.setText(rs5.getString("ratings"));
+            }
+            
+            PreparedStatement ps6 = con.prepareStatement(q);
+            ps6.setString(1, name6.getText());
+            ResultSet rs6 = ps6.executeQuery();
+            if(rs6.next()){
+                review6.setText(rs6.getString("ratings"));
+            }
+            
+            PreparedStatement ps7 = con.prepareStatement(q);
+            ps7.setString(1, name7.getText());
+            ResultSet rs7 = ps7.executeQuery();
+            if(rs7.next()){
+                review7.setText(rs7.getString("ratings"));
+            }
+            
+            PreparedStatement ps8 = con.prepareStatement(q);
+            ps8.setString(1, name8.getText());
+            ResultSet rs8 = ps8.executeQuery();
+            if(rs8.next()){
+                review8.setText(rs8.getString("ratings"));
+            }
+            
+            PreparedStatement ps9 = con.prepareStatement(q);
+            ps9.setString(1, name9.getText());
+            ResultSet rs9 = ps9.executeQuery();
+            if(rs9.next()){
+                review9.setText(rs9.getString("ratings"));
+            }
+
+            con.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        
+    }//GEN-LAST:event_loadBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws ClassNotFoundException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1867,8 +2286,9 @@ public class mainPage extends javax.swing.JFrame{
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(mainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
+        //</editor-fold>j
+//        JOptionPane j = new JOptionPane();
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1878,16 +2298,17 @@ public class mainPage extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton externalLink;
     private javax.swing.JButton externalLink1;
     private javax.swing.JButton externalLink2;
     private javax.swing.JButton externalLink3;
     private javax.swing.JButton externalLink4;
     private javax.swing.JButton externalLink5;
+    private javax.swing.JButton externalLink6;
     private javax.swing.JButton externalLink7;
     private javax.swing.JButton externalLink8;
     private javax.swing.JButton externalLink9;
     private javax.swing.JMenu homeMenu;
+    private javax.swing.JButton impDoneBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1899,7 +2320,6 @@ public class mainPage extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -1930,7 +2350,6 @@ public class mainPage extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
@@ -1938,7 +2357,6 @@ public class mainPage extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
@@ -1946,29 +2364,23 @@ public class mainPage extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
-    private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
-    private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel84;
     private javax.swing.JLabel jLabel85;
-    private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
     private javax.swing.JLabel jLabel93;
-    private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1984,6 +2396,7 @@ public class mainPage extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton loadBtn;
     private javax.swing.JMenu loginMenu;
     private javax.swing.JLabel name1;
     private javax.swing.JTextField name2;
@@ -2003,6 +2416,16 @@ public class mainPage extends javax.swing.JFrame{
     private javax.swing.JButton rate7;
     private javax.swing.JButton rate8;
     private javax.swing.JButton rate9;
+    private javax.swing.JButton refresh;
+    private javax.swing.JLabel review1;
+    private javax.swing.JLabel review2;
+    private javax.swing.JLabel review3;
+    private javax.swing.JLabel review4;
+    private javax.swing.JLabel review5;
+    private javax.swing.JLabel review6;
+    private javax.swing.JLabel review7;
+    private javax.swing.JLabel review8;
+    private javax.swing.JLabel review9;
     private javax.swing.JMenu signupMenu;
     private javax.swing.JTextField text1;
     private javax.swing.JTextField text2;
