@@ -1709,6 +1709,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text4.getText();
         String clgName = name4.getText();
+        if(Integer.parseInt(rating) <=10){
 //        review4.setText(rating);
         review4.setText(rating);
         try {
@@ -1726,6 +1727,9 @@ public class mainPage extends javax.swing.JFrame{
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        }else {
+            JOptionPane.showMessageDialog(this, "Enter Valid Ratings");
         }
     }//GEN-LAST:event_rate4ActionPerformed
 
@@ -1763,6 +1767,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text9.getText();
         String clgName = name9.getText();
+        if(Integer.parseInt(rating) <=10){
         review9.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -1779,6 +1784,8 @@ public class mainPage extends javax.swing.JFrame{
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }}else {
+            JOptionPane.showMessageDialog(this, "Enter Valid Ratings");
         }
     }//GEN-LAST:event_rate9ActionPerformed
 
@@ -1816,6 +1823,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text8.getText();
         String clgName = name8.getText();
+        if(Integer.parseInt(rating)<=10){
         review8.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -1832,6 +1840,9 @@ public class mainPage extends javax.swing.JFrame{
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        }else {
+            JOptionPane.showMessageDialog(this, "Enter Valid Ratings");
         }
     }//GEN-LAST:event_rate8ActionPerformed
 
@@ -1869,6 +1880,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text6.getText();
         String clgName = name6.getText();
+        if(Integer.parseInt(rating) <=10){
         review6.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -1885,6 +1897,9 @@ public class mainPage extends javax.swing.JFrame{
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        }else {
+            JOptionPane.showMessageDialog(this, "Enter Valid Ratings");
         }
     }//GEN-LAST:event_rate6ActionPerformed
 
@@ -1922,6 +1937,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text5.getText();
         String clgName = name5.getText();
+        if(Integer.parseInt(rating)<=10){
         review5.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -1938,6 +1954,9 @@ public class mainPage extends javax.swing.JFrame{
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        }else {
+            JOptionPane.showMessageDialog(this, "Enter Valid Ratings");
         }
     }//GEN-LAST:event_rate5ActionPerformed
 
@@ -1975,6 +1994,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text7.getText();
         String clgName = name7.getText();
+        if(Integer.parseInt(rating) <=10){
         review7.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -1991,6 +2011,9 @@ public class mainPage extends javax.swing.JFrame{
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        }else {
+            JOptionPane.showMessageDialog(this, "Enter Valid Ratings");
         }
     }//GEN-LAST:event_rate7ActionPerformed
 
@@ -2028,6 +2051,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text3.getText();
         String clgName = name3.getText();
+        if(Integer.parseInt(rating) <=10){
         review3.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -2043,6 +2067,9 @@ public class mainPage extends javax.swing.JFrame{
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        }else {
+            JOptionPane.showMessageDialog(this, "Enter Valid Ratings");
         }
     }//GEN-LAST:event_rate3ActionPerformed
 
@@ -2108,6 +2135,7 @@ public class mainPage extends javax.swing.JFrame{
     private void rate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate1ActionPerformed
         String rating = text1.getText();
         String clgName = name1.getText();
+        if(Integer.parseInt(rating)<=10){
         review1.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -2122,6 +2150,10 @@ public class mainPage extends javax.swing.JFrame{
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Enter Valid Ratings");
+        }
     }//GEN-LAST:event_rate1ActionPerformed
 
     private void name2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name2ActionPerformed
@@ -2131,6 +2163,7 @@ public class mainPage extends javax.swing.JFrame{
     private void rate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate2ActionPerformed
         String rating = text2.getText();
         String clgName = name2.getText();
+        if(Integer.parseInt(rating)<=10){
         review2.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -2147,6 +2180,9 @@ public class mainPage extends javax.swing.JFrame{
             con.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
+        }}
+        else {
+            JOptionPane.showMessageDialog(this, "Enter Valid Ratings");
         }
     }//GEN-LAST:event_rate2ActionPerformed
 

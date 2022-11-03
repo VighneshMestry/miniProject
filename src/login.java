@@ -71,6 +71,12 @@ public class login extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Password:");
 
+        tuser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tuserActionPerformed(evt);
+            }
+        });
+
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Username:");
 
@@ -232,7 +238,7 @@ public class login extends javax.swing.JFrame {
             pt.setString(1,tuser.getText());
 //            pt.setString(2,tpassword.getText());
             pt.setString(2, new String(tpassword.getPassword()));
-
+            if(tuser.getText().contains("@")){
             ResultSet rs = pt.executeQuery();
             if(rs.next()){
                 JOptionPane.showMessageDialog(null, "Welcome " + tuser.getText(), "Successful Login", JOptionPane.PLAIN_MESSAGE);
@@ -246,9 +252,13 @@ public class login extends javax.swing.JFrame {
             }
             con.close();
             
+        }else{
+                JOptionPane.showMessageDialog(this, "Enter with valid special characters");
+            }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this, ex);
-        }  
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tpasswordActionPerformed
@@ -278,6 +288,10 @@ public class login extends javax.swing.JFrame {
         signUp s = new signUp();
         s.setVisible(true);
     }//GEN-LAST:event_signupMenuActionPerformed
+
+    private void tuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tuserActionPerformed
 
     /**
      * @param args the command line arguments

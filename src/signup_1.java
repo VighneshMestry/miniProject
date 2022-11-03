@@ -85,6 +85,12 @@ public class signup_1 extends javax.swing.JFrame {
             }
         });
         jPanel2.add(tname, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 98, 172, 37));
+
+        tusername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tusernameActionPerformed(evt);
+            }
+        });
         jPanel2.add(tusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 229, 172, 43));
         jPanel2.add(tmobno, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 163, 172, 43));
 
@@ -157,7 +163,7 @@ public class signup_1 extends javax.swing.JFrame {
             String username = (tusername.getText());
             String password = new String(tpassword.getPassword());
             String mobile = tmobno.getText();
-            
+            if(username.contains("@")){
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/signup", "root", "");
@@ -188,6 +194,9 @@ public class signup_1 extends javax.swing.JFrame {
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, e);
             }
+            }else{
+                JOptionPane.showMessageDialog(this, "Enter with valid special characters");
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -196,6 +205,10 @@ public class signup_1 extends javax.swing.JFrame {
         l.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tusernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tusernameActionPerformed
 
     /**
      * @param args the command line arguments
