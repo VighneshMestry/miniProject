@@ -1709,7 +1709,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text4.getText();
         String clgName = name4.getText();
-        if(Integer.parseInt(rating) <=10){
+        if(Float.parseFloat(rating) <=10){
 //        review4.setText(rating);
         review4.setText(rating);
         try {
@@ -1767,7 +1767,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text9.getText();
         String clgName = name9.getText();
-        if(Integer.parseInt(rating) <=10){
+        if(Float.parseFloat(rating) <=10){
         review9.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -1823,7 +1823,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text8.getText();
         String clgName = name8.getText();
-        if(Integer.parseInt(rating)<=10){
+        if(Float.parseFloat(rating) <=10){
         review8.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -1880,7 +1880,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text6.getText();
         String clgName = name6.getText();
-        if(Integer.parseInt(rating) <=10){
+        if(Float.parseFloat(rating) <=10){
         review6.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -1937,7 +1937,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text5.getText();
         String clgName = name5.getText();
-        if(Integer.parseInt(rating)<=10){
+        if(Float.parseFloat(rating) <=10){
         review5.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -1994,7 +1994,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text7.getText();
         String clgName = name7.getText();
-        if(Integer.parseInt(rating) <=10){
+        if(Float.parseFloat(rating) <=10){
         review7.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -2051,7 +2051,7 @@ public class mainPage extends javax.swing.JFrame{
         // TODO add your handling code here:
         String rating = text3.getText();
         String clgName = name3.getText();
-        if(Integer.parseInt(rating) <=10){
+        if(Float.parseFloat(rating) <=10){
         review3.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -2135,7 +2135,7 @@ public class mainPage extends javax.swing.JFrame{
     private void rate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate1ActionPerformed
         String rating = text1.getText();
         String clgName = name1.getText();
-        if(Integer.parseInt(rating)<=10){
+        if(Float.parseFloat(rating) <=10){
         review1.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -2163,7 +2163,7 @@ public class mainPage extends javax.swing.JFrame{
     private void rate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rate2ActionPerformed
         String rating = text2.getText();
         String clgName = name2.getText();
-        if(Integer.parseInt(rating)<=10){
+        if(Float.parseFloat(rating) <=10){
         review2.setText(rating);
         try {
             Class.forName("com.mysql.jdbc.Driver");
